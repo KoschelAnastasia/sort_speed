@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Align(
                         alignment: Alignment.center,
                         child: Button(
-                          text: 'Ganerate',
+                          text: 'Generate',
                           onPressed: () {
                             if (lenghtController.text.isEmpty) {
                               ScaffoldMessenger.of(context).showSnackBar(
@@ -154,24 +154,27 @@ class _MyHomePageState extends State<MyHomePage> {
                 visible: genArray.isNotEmpty,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: InkWell(
+                  child: GestureDetector(
                     onTap: () {
                       setState(() {
                         isTap = !isTap;
                       });
                     },
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 255, 238, 211),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          genArray.toString(),
-                          style: numberStyle,
-                          maxLines: isTap ? null : 2,
-                          overflow: isTap ? null : TextOverflow.ellipsis,
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 255, 238, 211),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            genArray.toString(),
+                            style: numberStyle,
+                            maxLines: isTap ? null : 2,
+                            overflow: isTap ? null : TextOverflow.ellipsis,
+                          ),
                         ),
                       ),
                     ),
@@ -193,6 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     );
                     return;
                   }
+
                   setState(() {
                     stopWatch.start();
                     sortBubble = Sort.bubbleSort(genArray);
@@ -228,7 +232,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'Bubble Sort Finil Time: $bubbleTime seconds',
+                            'Bubble Sort Final Time: $bubbleTime seconds',
                             style: titleStyle,
                           ),
                         ),
@@ -247,7 +251,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'Merge Sort Finil Time: $mergeTime seconds',
+                            'Merge Sort Final Time: $mergeTime seconds',
                             style: titleStyle,
                           ),
                         ),
@@ -266,7 +270,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'Shell Sort Finil Time: $shellTime seconds',
+                            'Shell Sort Final Time: $shellTime seconds',
                             style: titleStyle,
                           ),
                         ),

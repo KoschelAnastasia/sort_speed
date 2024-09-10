@@ -1,13 +1,14 @@
 abstract class Sort {
   static List<int> bubbleSort(List<int> list) {
+    final sortList = List<int>.from(list);
     bool swapped = false;
-    int n = list.length;
-    for (int i = 0; i <= list.length - 1; i++) {
+    int n = sortList.length;
+    for (int i = 0; i <= sortList.length - 1; i++) {
       for (int j = 0; j < n - i - 1; j++) {
-        if (list[j] > list[j + 1]) {
-          int temporary = list[j];
-          list[j] = list[j + 1];
-          list[j + 1] = temporary;
+        if (sortList[j] > sortList[j + 1]) {
+          int temporary = sortList[j];
+          sortList[j] = sortList[j + 1];
+          sortList[j + 1] = temporary;
           swapped = true;
         }
         if (!swapped) {
@@ -16,21 +17,21 @@ abstract class Sort {
       }
     }
 
-    return list;
+    return sortList;
   }
 
   static List<int> mergeSort(List<int> list) {
-    List<int> sortList = [];
+    List<int> sortList = List<int>.from(list);
     // Base case: if the list is empty or has one item, return the list
-    if (list.length <= 1) {
-      return list;
+    if (sortList.length <= 1) {
+      return sortList;
     }
     // Split the list in half
-    int middle = list.length ~/ 2;
+    int middle = sortList.length ~/ 2;
     // Take the left half of the list
-    List<int> left = list.sublist(0, middle);
+    List<int> left = sortList.sublist(0, middle);
     // Take the right half of the list
-    List<int> right = list.sublist(middle, list.length);
+    List<int> right = sortList.sublist(middle, sortList.length);
 
     return merge(mergeSort(left), mergeSort(right));
   }
@@ -65,28 +66,29 @@ abstract class Sort {
   }
 
   static List<int> shellSort(List<int> list) {
+    final sortList = List<int>.from(list);
     // Start with a big gap
-    int interval = list.length ~/ 2;
+    int interval = sortList.length ~/ 2;
     // If the interval is greater than 0, perform the following steps
     while (interval > 0) {
       // If the element at the index of the intervals is less then list.length,
       //go through the list starting with the element at the index of the interval
-      for (int i = interval; i < list.length; i++) {
-        int temp = list[i];
+      for (int i = interval; i < sortList.length; i++) {
+        int temp = sortList[i];
         int j = i;
         // If j greater than or equal to interval and the element at position j - interval is
         //greater than temp. This loop is used to move list items if they are larger than the current item.
-        while (j >= interval && list[j - interval] > temp) {
-          list[j] = list[j - interval];
+        while (j >= interval && sortList[j - interval] > temp) {
+          sortList[j] = sortList[j - interval];
 
           j -= interval;
         }
         // Set the element at position j to temp
-        list[j] = temp;
+        sortList[j] = temp;
       }
       // Reduce the interval by half
       interval = interval ~/ 2;
     }
-    return list;
+    return sortList;
   }
 }
