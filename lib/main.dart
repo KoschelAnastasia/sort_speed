@@ -212,6 +212,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     sortShell = Sort.shellSort(genArray);
                     stopWatch.stop();
                     shellTime = stopWatch.elapsedMicroseconds / 1000000;
+                    stopWatch.reset();
                   });
                 },
               ),

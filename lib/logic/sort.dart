@@ -4,6 +4,7 @@ abstract class Sort {
     bool swapped = false;
     int n = sortList.length;
     for (int i = 0; i <= sortList.length - 1; i++) {
+      swapped = false;
       for (int j = 0; j < n - i - 1; j++) {
         if (sortList[j] > sortList[j + 1]) {
           int temporary = sortList[j];
@@ -11,9 +12,9 @@ abstract class Sort {
           sortList[j + 1] = temporary;
           swapped = true;
         }
-        if (!swapped) {
-          break;
-        }
+      }
+      if (swapped == false) {
+        break;
       }
     }
 
