@@ -79,6 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  //TextFormField for the user to enter the length of the array
                   SizedBox(
                     width: 150,
                     child: TextFormField(
@@ -110,6 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
+                  //Button to generate the array
                   Padding(
                     padding: const EdgeInsets.only(left: 20, bottom: 20),
                     child: Align(
@@ -127,6 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               return;
                             }
                             setState(() {
+                              //Generate an array of the length entered by the user
                               genArray = _generateArray(int.parse(lenghtController.text));
                             });
                           },
@@ -148,6 +151,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+            //Display the generated array, by default is two lines, by tapping on it, it will show all elements
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               child: Visibility(
@@ -182,6 +186,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
+            //Button to sort the generated array
             Visibility(
               visible: genArray.isNotEmpty,
               child: Button(
@@ -198,6 +203,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   }
 
                   setState(() {
+                    //Sort the generated array using the three sorting algorithms
+                    //Stopwatch to measure the time taken to sort the array
                     stopWatch.start();
                     sortBubble = Sort.bubbleSort(genArray);
                     stopWatch.stop();
@@ -217,6 +224,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
               ),
             ),
+            //Display the sorted arrays
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 52),
               child: Visibility(
@@ -296,6 +304,7 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  //Function to create an array of the length specified by the user.
   List<int> _generateArray(int length) {
     List<int> array = List.generate(length, (index) => index);
     array.shuffle();
@@ -304,6 +313,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+//Custom Button Widget
 class Button extends StatelessWidget {
   final String text;
   final Function() onPressed;
